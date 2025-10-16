@@ -35,9 +35,9 @@ export function Login() {
         </p>
         <a
           href="/register"
-          className="bg-gray-500 text-gray-200 flex items-center justify-center w-full h-10 rounded-1xl text-sm font-bold"
+          className="bg-gray-500 text-gray-200 flex items-center justify-center w-full h-10 rounded-1xl text-sm font-bold  hover:bg-gray-600 transition ease-linear"
         >
-          Criar contar
+          Criar conta
         </a>
       </div>
     </div>

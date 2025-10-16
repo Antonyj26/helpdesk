@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
 import { Login } from "../../pages/Login/Login";
-import { AuthLayout } from "../../components/AuthLayout/AuthLayout";
+import { AuthLayout } from "../../components/Layouts/AuthLayout";
 import { Register } from "../../pages/Register/Register";
 
 export function AuthRoutes() {

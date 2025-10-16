@@ -3,7 +3,8 @@ type Props = React.ComponentProps<"button"> & {
   variant?: "primary" | "secondary";
 };
 
-const base = "w-full h-10 rounded-1xl text-sm font-bold";
+const base =
+  "w-full h-10 rounded-1xl text-sm font-bold cursor-pointer hover:bg-gray-300 transition ease-linear";
 
 const variants = {
   primary: "bg-gray-200 text-gray-600",
