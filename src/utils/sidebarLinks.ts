@@ -6,7 +6,7 @@ import clientsSvg from "../assets/briefcase-business.svg";
 import dashboardSvg from "../assets/Frame.svg";
 
 const SIDEBAR_LINKS = [
-  { to: "/dashboard", label: "Painel", icon: dashboardSvg },
+  { to: "/", label: "Painel", icon: dashboardSvg },
   { to: "/tickets", label: "Chamados", icon: ticketsSvg },
   { to: "/clients", label: "Clientes", icon: clientsSvg },
   { to: "/techs", label: "Técnicos", icon: techsSvg },

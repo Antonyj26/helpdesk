@@ -1,11 +1,11 @@
-import { BrowserRouter } from "react-router";
+import { BrowserRouter } from "react-router-dom";
 import { AuthRoutes } from "./AuthRoutes/AuthRoutes";
-import { AppLayout } from "../components/Layouts/AppLayout";
+import { AppRoutes } from "./AppRoutes/AppRoutes";
 
 export function Routes() {
   return (
     <BrowserRouter>
-      <AppLayout />
+      <AppRoutes />
     </BrowserRouter>
   );
 }
