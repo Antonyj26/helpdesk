@@ -20,7 +20,7 @@ export function Button({
 }: Props) {
   return (
     <button
-      className={`${base} ${variants[variant]} disabled:opacity-50 disabled:cursor-not-allowed`}
+      className={`${base} ${variants[variant]} disabled:opacity-50 disabled:cursor-progress`}
       disabled={isLoading}
       type={type}
       {...rest}
