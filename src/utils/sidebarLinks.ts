@@ -6,12 +6,32 @@ import clientsSvg from "../assets/briefcase-business.svg";
 import dashboardSvg from "../assets/Frame.svg";
 
 const SIDEBAR_LINKS = [
-  { to: "/", label: "Painel", icon: dashboardSvg },
-  { to: "/tickets", label: "Chamados", icon: ticketsSvg },
-  { to: "/clients", label: "Clientes", icon: clientsSvg },
-  { to: "/techs", label: "Técnicos", icon: techsSvg },
-  { to: "/services", label: "Serviços", icon: servicesSvg },
-  { to: "/newTicket", label: "Criar chamado", icon: newTicketSvg },
+  {
+    to: "/dashboard",
+    label: "Painel",
+    icon: dashboardSvg,
+    role: ["admin", "tech", "client"],
+  },
+  {
+    to: "/tickets",
+    label: "Chamados",
+    icon: ticketsSvg,
+    role: ["admin", "client"],
+  },
+  {
+    to: "/clients",
+    label: "Clientes",
+    icon: clientsSvg,
+    role: ["admin"],
+  },
+  { to: "/techs", label: "Técnicos", icon: techsSvg, role: ["admin"] },
+  { to: "/services", label: "Serviços", icon: servicesSvg, role: ["admin"] },
+  {
+    to: "/newTicket",
+    label: "Criar chamado",
+    icon: newTicketSvg,
+    role: ["client"],
+  },
 ];
 
 export { SIDEBAR_LINKS };

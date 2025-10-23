@@ -8,15 +8,20 @@ export function Routes() {
   const { session, isLoading } = useAuth();
 
   function RenderRoute() {
-    if (
-      session?.role === "admin" ||
-      session?.role === "client" ||
-      session?.role === "tech"
-    ) {
-      return <AppRoutes />;
+    if (!session) {
+      return <AuthRoutes />;
     }
 
-    return <AuthRoutes />;
+    switch (session.role) {
+      case "admin":
+        return <AppRoutes />;
+      case "client":
+        return <AppRoutes />;
+      case "tech":
+        return <AppRoutes />;
+      default:
+        return <AuthRoutes />;
+    }
   }
 
   if (isLoading) {

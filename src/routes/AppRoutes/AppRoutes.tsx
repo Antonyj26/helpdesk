@@ -4,14 +4,46 @@ import { Dashboard } from "../../pages/MainPages/Dashboard";
 import { Tickets } from "../../pages/MainPages/Tickets";
 import { NotFound } from "../../pages/NotFound/NotFound";
 import { Clients } from "../../pages/MainPages/Clients";
+import { Unauthorized } from "../../pages/Unauthorized/Unauthorized";
+import { ProtectedRoute } from "../ProtectedRoute ";
 
 export function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<AppLayout />}>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/tickets" element={<Tickets />} />
-        <Route path="/clients" element={<Clients />} />
+      <Route element={<AppLayout />}>
+        <Route
+          path="/client"
+          element={
+            <ProtectedRoute roles={["admin"]}>
+              <Clients />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/tickets"
+          element={
+            <ProtectedRoute roles={["admin", "client"]}>
+              <Tickets />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute roles={["admin", "client", "tech"]}>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute roles={["admin", "client", "tech"]}>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
