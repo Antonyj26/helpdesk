@@ -1,46 +1,70 @@
 import type { Ticket } from "../../components/TicketsTable/TicketsTable";
 import { TicketsTable } from "../../components/TicketsTable/TicketsTable";
-
-const tickets: Ticket[] = [
-  {
-    id: 1,
-    updatedAt: "2025-10-16",
-    title: "Erro no sistema",
-    service: "Suporte",
-    totalValue: "R$ 150,00",
-    client: "Cliente A",
-    tech: "Técnico X",
-    status: "Aberto",
-  },
-  {
-    id: 2,
-    updatedAt: "2025-10-15",
-    title: "Manutenção",
-    service: "Instalação",
-    totalValue: "R$ 200,00",
-    client: "Cliente B",
-    tech: "Técnico Y",
-    status: "Encerrado",
-  },
-  {
-    id: 3,
-    updatedAt: "2025-10-15",
-    title: "Manutenção",
-    service: "Instalação",
-    totalValue: "R$ 200,00",
-    client: "Cliente C",
-    tech: "Técnico Z",
-    status: "Em andamento",
-  },
-];
+import { useAuth } from "../../hooks/useAuth";
+import { api } from "../../services/api";
+import { useEffect, useState } from "react";
+import { AxiosError } from "axios";
+import { Loading } from "../../components/Loading/Loading";
 
 export function Tickets() {
+  const { session } = useAuth();
+  const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    async function fetchTickets() {
+      try {
+        if (!session) {
+          return;
+        }
+
+        const endpoint =
+          session.role === "admin" ? "/admin/ticket" : "/client/ticket";
+
+        const response = await api.get(endpoint);
+        console.log("📦 Resposta da API:", response.data);
+
+        const data = response.data;
+
+        const fetchedTickets =
+          session.role === "admin"
+            ? data.allTickets ?? []
+            : data.ticketsFormated ?? [];
+
+        console.log("🧩 Tickets encontrados:", fetchedTickets);
+
+        setTickets(fetchedTickets);
+
+        setMessage(data.message);
+      } catch (error) {
+        console.log(error);
+        if (error instanceof AxiosError) {
+          return alert(error.response?.data.message);
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchTickets();
+  }, [session]);
+
   const handleViewDetails = (ticketId: number) => {};
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div>
       <h1 className="text-xl text-blue-dark font-bold mb-6">Chamados</h1>
-      <TicketsTable tickets={tickets} onViewDetails={handleViewDetails} />
+      <p className="text-sm text-gray-100 mb-4"></p>
+      {tickets?.length > 0 ? (
+        <TicketsTable tickets={tickets} onViewDetails={handleViewDetails} />
+      ) : (
+        <p className="text-gray-100 font-bold">{message}</p>
+      )}
     </div>
   );
 }
