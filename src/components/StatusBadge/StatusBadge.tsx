@@ -5,7 +5,7 @@ type StatusBadgeProps = {
 };
 
 export function StatusBadge({ status }: StatusBadgeProps) {
-  const current = STATUS_STYLE.find((item) => item.status === status);
+  const current = STATUS_STYLE[status as keyof typeof STATUS_STYLE];
 
   if (!current) {
     return (
@@ -20,7 +20,7 @@ export function StatusBadge({ status }: StatusBadgeProps) {
       className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium ${current.style}`}
     >
       <img src={current.icon} alt={status} className="w-4 h-4" />
-      {status}
+      {current.label}
     </span>
   );
 }
