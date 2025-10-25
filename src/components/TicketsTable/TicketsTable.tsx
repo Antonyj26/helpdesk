@@ -5,8 +5,8 @@ export type Ticket = {
   id: number;
   updatedAt: string;
   title: string;
-  service: string;
-  totalValue: string;
+  services: string[];
+  price: string[];
   client: string;
   tech: string;
   status: string;
@@ -36,7 +36,7 @@ export function TicketsTable({ tickets, onViewDetails }: TicketsTableProps) {
               Valor Total
             </th>
             <th className="px-6 py-3 text-gray-400 text-left text-sm font-bold">
-              clientes
+              Cliente
             </th>
             <th className="px-6 py-3 text-gray-400 text-left text-sm font-bold">
               Técnico
@@ -57,13 +57,11 @@ export function TicketsTable({ tickets, onViewDetails }: TicketsTableProps) {
                     {ticket.title}
                   </span>
                   <span className="text-xs text-gray-200">
-                    {ticket.service}
+                    {ticket.services?.join(", ") || "Sem serviços"}
                   </span>
                 </div>
               </td>
-              <td className="px-6 py-4 text-sm font-bold">
-                {ticket.totalValue}
-              </td>
+              <td className="px-6 py-4 text-sm font-bold">{`R$ ${ticket.price}`}</td>
               <td className="px-6 py-4 text-sm font-bold">{ticket.client}</td>
               <td className="px-6 py-4 text-sm font-bold">{ticket.tech}</td>
               <td className="px-6 py-4">
