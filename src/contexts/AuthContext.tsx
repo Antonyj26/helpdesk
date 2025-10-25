@@ -8,7 +8,7 @@ type AuthContext = {
   remove: () => void;
 };
 
-const LOCAL_STORAGE_KEY = "@ticket";
+const LOCAL_STORAGE_KEY = "@helpdesk";
 
 export const AuthContext = createContext({} as AuthContext);
 

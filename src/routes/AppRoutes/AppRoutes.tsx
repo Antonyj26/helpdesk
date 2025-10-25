@@ -12,7 +12,7 @@ export function AppRoutes() {
     <Routes>
       <Route element={<AppLayout />}>
         <Route
-          path="/client"
+          path="/clients"
           element={
             <ProtectedRoute roles={["admin"]}>
               <Clients />
