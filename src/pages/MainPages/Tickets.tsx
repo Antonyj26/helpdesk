@@ -38,7 +38,6 @@ export function Tickets() {
 
         setMessage(data.message);
       } catch (error) {
-        console.log(error);
         if (error instanceof AxiosError) {
           return alert(error.response?.data.message);
         }

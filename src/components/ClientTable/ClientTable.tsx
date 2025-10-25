@@ -1,19 +1,19 @@
 import trashSvg from "../../assets/trash.svg";
-import penSvg from "../../assets/pen-line.svg";
+import eyeSvg from "../../assets/eye.svg";
 
-export type User = {
+export type Client = {
   id: string;
   name: string;
   email: string;
 };
 
 type ClientTableProps = {
-  users: User[];
+  clients: Client[];
   onDelete: (ticketId: string) => void;
   OnEdit: (ticketId: string) => void;
 };
 
-export function ClientTable({ users, onDelete, OnEdit }: ClientTableProps) {
+export function ClientTable({ clients, onDelete, OnEdit }: ClientTableProps) {
   return (
     <div className="overflow-x-auto border border-gray-500 rounded-2xl">
       <table className="min-w-full divide-y divide-gray-500">
@@ -29,19 +29,19 @@ export function ClientTable({ users, onDelete, OnEdit }: ClientTableProps) {
               Excluir
             </th>
             <th className="px-6 py-3 text-gray-400 text-left text-sm font-bold">
-              Editar
+              Vizualizar
             </th>
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <td className="px-6 py-2 text-sm font-bold">{user.name}</td>
-              <td className="px-6 py-2 text-sm">{user.email}</td>
+          {clients.map((client) => (
+            <tr key={client.id}>
+              <td className="px-6 py-2 text-sm font-bold">{client.name}</td>
+              <td className="px-6 py-2 text-sm">{client.email}</td>
               <td className="px-6 py-2 text-center">
                 <button
                   className="w-12 h-7 bg-gray-500 rounded-1xl flex justify-center items-center cursor-pointer hover:bg-gray-600 transition ease-linear"
-                  onClick={() => onDelete(user.id)}
+                  onClick={() => onDelete(client.id)}
                 >
                   <img src={trashSvg} alt="Icone de lixeira" />
                 </button>
@@ -49,9 +49,9 @@ export function ClientTable({ users, onDelete, OnEdit }: ClientTableProps) {
               <td className="px-6 py-2 text-center">
                 <button
                   className="w-12 h-7 bg-gray-500 rounded-1xl flex justify-center items-center cursor-pointer hover:bg-gray-600 transition ease-linear"
-                  onClick={() => OnEdit(user.id)}
+                  onClick={() => OnEdit(client.id)}
                 >
-                  <img src={penSvg} alt="Icone de caneta" />
+                  <img src={eyeSvg} alt="Icone de caneta" />
                 </button>
               </td>
             </tr>

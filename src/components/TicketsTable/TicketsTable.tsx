@@ -69,7 +69,7 @@ export function TicketsTable({ tickets, onViewDetails }: TicketsTableProps) {
               </td>
               <td>
                 <button
-                  className="bg-gray-500 w-7 h-7 rounded-1xl cursor-pointer flex items-center justify-center hover:bg-gray-600 transition ease-linear ml"
+                  className="bg-gray-500 w-7 h-7 rounded-1xl cursor-pointer flex items-center justify-center hover:bg-gray-600 transition ease-linear mr-2"
                   onClick={() => onViewDetails(ticket.id)}
                 >
                   <img src={detailsSvg} alt="Caneta de detalhes" />

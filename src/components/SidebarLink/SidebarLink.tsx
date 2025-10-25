@@ -1,5 +1,11 @@
-import { Link, useLocation } from "react-router-dom";
-import type { SidebarLinkProps } from "./types";
+import { Link } from "react-router-dom";
+
+import type { LinkProps } from "react-router-dom";
+
+type SidebarLinkProps = LinkProps & {
+  label: string;
+  icon?: string;
+};
 
 export function SidebarLink({ to, label, icon, ...rest }: SidebarLinkProps) {
   return (
