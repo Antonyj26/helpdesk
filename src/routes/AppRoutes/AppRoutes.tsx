@@ -6,6 +6,7 @@ import { NotFound } from "../../pages/NotFound/NotFound";
 import { Clients } from "../../pages/MainPages/Clients";
 import { Unauthorized } from "../../pages/Unauthorized/Unauthorized";
 import { ProtectedRoute } from "../ProtectedRoute ";
+import { Techs } from "../../pages/MainPages/Techs";
 
 export function AppRoutes() {
   return (
@@ -24,6 +25,14 @@ export function AppRoutes() {
           element={
             <ProtectedRoute roles={["admin", "client"]}>
               <Tickets />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/techs"
+          element={
+            <ProtectedRoute roles={["admin"]}>
+              <Techs />
             </ProtectedRoute>
           }
         />

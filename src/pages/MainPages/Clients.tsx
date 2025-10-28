@@ -6,19 +6,6 @@ import { api } from "../../services/api";
 import { AxiosError } from "axios";
 import { Loading } from "../../components/Loading/Loading";
 
-// const clients: Client[] = [
-//   {
-//     id: "1",
-//     name: "Antony",
-//     email: "antony@email.com",
-//   },
-//   {
-//     id: "2",
-//     name: "Vitória",
-//     email: "vitoria@email.com",
-//   },
-// ];
-
 export function Clients() {
   const { session } = useAuth();
   const [client, setClient] = useState<Client[]>([]);
@@ -57,7 +44,7 @@ export function Clients() {
 
   return (
     <div>
-      <h1 className="text-blue-dark text-xl font-bold mb-6"></h1>
+      <h1 className="text-blue-dark text-xl font-bold mb-6">Clientes</h1>
       <ClientTable
         clients={client}
         OnEdit={handleEdit}
