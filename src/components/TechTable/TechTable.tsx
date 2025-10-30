@@ -55,7 +55,7 @@ export function TechTable({ techs, onEdit }: TechTableProps) {
                   className="w-12 h-7 bg-gray-500 rounded-1xl flex justify-center items-center cursor-pointer hover:bg-gray-600 transition ease-linear"
                   onClick={() => onEdit(tech.id)}
                 >
-                  <img src={penLineSvg} alt="Simbole de caneta para edição" />
+                  <img src={penLineSvg} alt="Simbolo de caneta para edição" />
                 </button>
               </td>
             </tr>

@@ -1,4 +1,4 @@
-import { StatusBadge } from "../StatusBadge/StatusBadge";
+import { StatusTickets } from "../Status/StatusTickets";
 import detailsSvg from "../../assets/pen-line.svg";
 
 export type Ticket = {
@@ -65,7 +65,7 @@ export function TicketsTable({ tickets, onViewDetails }: TicketsTableProps) {
               <td className="px-6 py-4 text-sm font-bold">{ticket.client}</td>
               <td className="px-6 py-4 text-sm font-bold">{ticket.tech}</td>
               <td className="px-6 py-4">
-                <StatusBadge status={ticket.status} />
+                <StatusTickets status={ticket.status} />
               </td>
               <td>
                 <button

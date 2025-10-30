@@ -4,7 +4,7 @@ type StatusBadgeProps = {
   status: string;
 };
 
-export function StatusBadge({ status }: StatusBadgeProps) {
+export function StatusTickets({ status }: StatusBadgeProps) {
   const current = STATUS_STYLE[status as keyof typeof STATUS_STYLE];
 
   if (!current) {
