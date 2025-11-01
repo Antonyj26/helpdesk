@@ -32,8 +32,6 @@ export function Tickets() {
             ? data.allTickets ?? []
             : data.ticketsFormated ?? [];
 
-        console.log("🧩 Tickets encontrados:", fetchedTickets);
-
         setTickets(fetchedTickets);
 
         setMessage(data.message);

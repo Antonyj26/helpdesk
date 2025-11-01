@@ -8,6 +8,7 @@ import { Unauthorized } from "../../pages/Unauthorized/Unauthorized";
 import { ProtectedRoute } from "../ProtectedRoute ";
 import { Techs } from "../../pages/MainPages/Techs";
 import { Services } from "../../pages/MainPages/Services";
+import { NewTicket } from "../../pages/MainPages/NewTicket";
 
 export function AppRoutes() {
   return (
@@ -42,6 +43,14 @@ export function AppRoutes() {
           element={
             <ProtectedRoute roles={["admin"]}>
               <Services />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/newTicket"
+          element={
+            <ProtectedRoute roles={["client"]}>
+              <NewTicket />
             </ProtectedRoute>
           }
         />
