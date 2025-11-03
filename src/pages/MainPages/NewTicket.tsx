@@ -29,7 +29,7 @@ const ticketSchema = z.object({
   service_id: z.string().uuid(),
   tech_id: z.string().uuid(),
   selectedHour: z.string().regex(/^([0-1]\d|2[0-3]):([0-5]\d)$/, {
-    message: "Horário deve estar no formato HH:MM",
+    message: "Selecione um horário",
   }),
 });
 
@@ -41,6 +41,7 @@ export function NewTicket() {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [selectedTech, setSelectedTech] = useState<Techs | null>(null);
   const [selectedHour, setSelectedHour] = useState<string | null>(null);
+  const [occupiedHours, setOccupiedHours] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -63,8 +64,6 @@ export function NewTicket() {
       try {
         const response = await api.get("/client/techs");
         setTechs(response.data.techs);
-
-        console.log(response.data);
       } catch (error) {
         if (error instanceof AxiosError)
           return alert(
@@ -76,6 +75,37 @@ export function NewTicket() {
     fetchedServices();
     fetchedTechs();
   }, []);
+
+  useEffect(() => {
+    if (!selectedTech) {
+      return;
+    }
+
+    async function fetchedOccupiedHours() {
+      try {
+        const statuses = ["open", "in_progress"];
+        let occupied: string[] = [];
+
+        for (const status of statuses) {
+          const response = await api.get(
+            `/client/ticket/${selectedTech?.id}/tickets`,
+            { params: { status } }
+          );
+
+          const tickets = response.data.tickets;
+          const hours = tickets.map((ticket: any) => ticket.selectedHour);
+          occupied = [...occupied, ...hours];
+        }
+        setOccupiedHours(occupied);
+      } catch (error) {
+        console.log(error);
+        if (error instanceof AxiosError) {
+          return console.log(error.response?.data.message);
+        }
+      }
+    }
+    fetchedOccupiedHours();
+  }, [selectedTech]);
 
   function handleSelectServiceChange(
     event: React.ChangeEvent<HTMLSelectElement>
@@ -115,7 +145,7 @@ export function NewTicket() {
       }
     } catch (error) {
       if (error instanceof AxiosError) {
-        return alert(error.request.data.message ?? "Erro ao criar chamado");
+        return alert(error.request.data.message);
       }
 
       if (error instanceof ZodError) {
@@ -173,7 +203,7 @@ export function NewTicket() {
               ))}
             </Select>
             <Select required legend="Técnico" onChange={handleSelectTechChange}>
-              <option value="" disabled selected>
+              <option disabled selected>
                 Selecione o técnico para realizar esse serviço
               </option>
               {techs.map((tech) => (
@@ -190,11 +220,13 @@ export function NewTicket() {
               <option value="" disabled selected>
                 Selecione o horário para ser realizado o serviço
               </option>
-              {selectedTech?.techAvailability.map((hour, index) => (
-                <option key={index} value={hour}>
-                  {hour}
-                </option>
-              ))}
+              {selectedTech?.techAvailability
+                .filter((hour) => !occupiedHours.includes(hour))
+                .map((hour, index) => (
+                  <option key={index} value={hour}>
+                    {hour}
+                  </option>
+                ))}
             </Select>
           </div>
         </div>
