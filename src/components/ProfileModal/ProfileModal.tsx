@@ -53,6 +53,8 @@ export function ProfileModal() {
       if (error instanceof ZodError) {
         return alert(error.issues[0].message);
       }
+    } finally {
+      setIsLoading(false);
     }
   }
 

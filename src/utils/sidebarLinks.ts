@@ -32,6 +32,12 @@ const SIDEBAR_LINKS = [
     icon: newTicketSvg,
     role: ["client"],
   },
+  {
+    to: "/technicianTickets",
+    label: "Meus Chamados",
+    icon: ticketsSvg,
+    role: ["tech"],
+  },
 ];
 
 export { SIDEBAR_LINKS };

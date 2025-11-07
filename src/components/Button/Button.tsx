@@ -14,7 +14,7 @@ const baseVariants = {
 const variants = {
   primary: "bg-gray-200 text-gray-600",
   secondary: "bg-gray-500 text-gray-200",
-  danger: "bg-gray-500 w",
+  danger: "bg-gray-500",
 };
 
 export function Button({

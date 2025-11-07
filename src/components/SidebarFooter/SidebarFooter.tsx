@@ -15,7 +15,7 @@ export function SidebarFooter() {
   const userEmail = auth.session?.email;
 
   return (
-    <div className="relative mt-auto">
+    <div className="fixed bottom-0 bg-gray-100">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex flex-col items-start w-full hover:bg-gray-300 p-3 rounded-2xl cursor-pointer"

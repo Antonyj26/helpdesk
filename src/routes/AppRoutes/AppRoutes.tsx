@@ -9,6 +9,7 @@ import { ProtectedRoute } from "../ProtectedRoute ";
 import { Techs } from "../../pages/MainPages/Techs";
 import { Services } from "../../pages/MainPages/Services";
 import { NewTicket } from "../../pages/MainPages/NewTicket";
+import { TechnicianTickets } from "../../pages/MainPages/TechnicianTickets";
 
 export function AppRoutes() {
   return (
@@ -51,6 +52,14 @@ export function AppRoutes() {
           element={
             <ProtectedRoute roles={["client"]}>
               <NewTicket />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/technicianTickets"
+          element={
+            <ProtectedRoute roles={["tech"]}>
+              <TechnicianTickets />
             </ProtectedRoute>
           }
         />
