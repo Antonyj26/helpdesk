@@ -10,6 +10,7 @@ import { Techs } from "../../pages/MainPages/Techs";
 import { Services } from "../../pages/MainPages/Services";
 import { NewTicket } from "../../pages/MainPages/NewTicket";
 import { TechnicianTickets } from "../../pages/MainPages/TechnicianTickets";
+import { TechnicianTicketDetails } from "../../pages/Details/TechnicianTicketDetails";
 
 export function AppRoutes() {
   return (
@@ -60,6 +61,15 @@ export function AppRoutes() {
           element={
             <ProtectedRoute roles={["tech"]}>
               <TechnicianTickets />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="technicianTickets/details/:id"
+          element={
+            <ProtectedRoute roles={["tech"]}>
+              <TechnicianTicketDetails />
             </ProtectedRoute>
           }
         />

@@ -46,19 +46,19 @@ export function TicketsTech({ tickets, onViewDetails }: TicketsTechProps) {
             items.map((ticket) => (
               <div
                 key={ticket.id}
-                className="border border-gray-500 rounded-lg p-4 hover:bg-gray-500 cursor-pointer transition ease-linear "
+                className="border border-gray-500 rounded-lg p-4 hover:bg-gray-500 transition ease-linear "
               >
                 <div className="flex items-center justify-between gap-2">
                   <span className="text-xs text-gray-400 font-bold">
                     {ticket.id}
                   </span>
-                  <Button
+                  <button
                     type="button"
-                    variant="secondary"
-                    baseVariant="baseIcon"
+                    className="bg-gray-500 p-1 rounded-2xl cursor-pointer"
+                    onClick={() => onViewDetails(ticket.id)}
                   >
-                    <img src={penSvg} alt="" />
-                  </Button>
+                    <img src={penSvg} alt="" className="w-4 h-4" />
+                  </button>
                 </div>
                 <h2 className="text-gray-100 font-bold text-lg">
                   {ticket.title}
