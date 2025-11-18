@@ -1,7 +1,7 @@
 type Props = React.ComponentProps<"button"> & {
   isLoading?: boolean;
   variant?: "primary" | "secondary" | "danger";
-  baseVariant?: "defaultBase" | "baseIcon";
+  baseVariant?: "defaultBase" | "baseIcon" | "basePage";
   nameIcon?: "nameIcon";
   className?: string;
 };
@@ -11,6 +11,8 @@ const baseVariants = {
     "w-full h-10 rounded-1xl text-sm font-bold cursor-pointer hover:bg-gray-300 transition ease-linear p-4",
   baseIcon:
     "w-7 h-7 rounded-1xl cursor-pointer flex items-center justify-center hover:bg-gray-600 transition ease-linear mr-2",
+  basePage:
+    "h-10 rounded-1xl text-sm font-bold cursor-pointer hover:bg-gray-300 transition ease-linear p-4",
 };
 
 const variants = {
