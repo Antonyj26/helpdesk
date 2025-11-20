@@ -22,6 +22,8 @@ export function Clients() {
 
         const data = response.data;
 
+        console.log("Clients recebidos:", data.clients);
+
         setClient(data.clients);
       } catch (error) {
         if (error instanceof AxiosError) {
@@ -35,8 +37,22 @@ export function Clients() {
     fetchedClients();
   }, [session]);
 
-  const handleEdit = (userId: string) => {};
-  const handleDelete = (userid: string) => {};
+  const handleEdit = async (userId: string) => {};
+  const handleDelete = async (clientId: string) => {
+    if (confirm("Tem certeza que deseja excluir esse cliente?")) {
+      try {
+        await api.delete(`/admin/client/delete/${clientId}`);
+        window.location.reload();
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          console.log(error);
+          return alert(
+            error.response?.data.message ?? "Erro ao deletar cliente"
+          );
+        }
+      }
+    }
+  };
 
   if (isLoading) {
     return <Loading />;
@@ -47,7 +63,7 @@ export function Clients() {
       <h1 className="text-blue-dark text-xl font-bold mb-6">Clientes</h1>
       <ClientTable
         clients={client}
-        OnEdit={handleEdit}
+        onEdit={handleEdit}
         onDelete={handleDelete}
       />
     </div>

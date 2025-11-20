@@ -32,7 +32,7 @@ export function ServiceTable({ services, onEdit }: ServiceTableProps) {
         </thead>
         {services.map((service) => (
           <tbody>
-            <tr>
+            <tr key={service.id}>
               <td className="px-6 py-2 text-sm font-bold text-gray-200">
                 {service.name}
               </td>

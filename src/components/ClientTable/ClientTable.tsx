@@ -9,11 +9,11 @@ export type Client = {
 
 type ClientTableProps = {
   clients: Client[];
-  onDelete: (ticketId: string) => void;
-  OnEdit: (ticketId: string) => void;
+  onDelete: (clientId: string) => void;
+  onEdit: (ticketId: string) => void;
 };
 
-export function ClientTable({ clients, onDelete, OnEdit }: ClientTableProps) {
+export function ClientTable({ clients, onDelete, onEdit }: ClientTableProps) {
   return (
     <div className="overflow-x-auto border border-gray-500 rounded-2xl">
       <table className="min-w-full divide-y divide-gray-500">
@@ -49,7 +49,7 @@ export function ClientTable({ clients, onDelete, OnEdit }: ClientTableProps) {
               <td className="px-6 py-2 text-center">
                 <button
                   className="w-12 h-7 bg-gray-500 rounded-1xl flex justify-center items-center cursor-pointer hover:bg-gray-600 transition ease-linear"
-                  onClick={() => OnEdit(client.id)}
+                  onClick={() => onEdit(client.id)}
                 >
                   <img src={eyeSvg} alt="Icone de caneta" />
                 </button>
