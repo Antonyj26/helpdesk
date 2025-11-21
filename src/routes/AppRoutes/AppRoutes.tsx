@@ -11,6 +11,7 @@ import { Services } from "../../pages/MainPages/Services";
 import { NewTicket } from "../../pages/MainPages/NewTicket";
 import { TechnicianTickets } from "../../pages/MainPages/TechnicianTickets";
 import { TechnicianTicketDetails } from "../../pages/Details/TechnicianTicketDetails";
+import { AdministratorTicketDetails } from "../../pages/Details/AdministratorTicketDetails";
 
 export function AppRoutes() {
   return (
@@ -70,6 +71,14 @@ export function AppRoutes() {
           element={
             <ProtectedRoute roles={["tech"]}>
               <TechnicianTicketDetails />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="AdministratorTicketDetails/details/:id"
+          element={
+            <ProtectedRoute roles={["admin"]}>
+              <AdministratorTicketDetails />
             </ProtectedRoute>
           }
         />

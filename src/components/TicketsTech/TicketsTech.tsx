@@ -2,7 +2,6 @@ import openSvg from "../../assets/circle-help.svg";
 import inProgressSvg from "../../assets/clock-2.svg";
 import encerradoSvg from "../../assets/circle-check-big.svg";
 import penSvg from "../../assets/pen-line.svg";
-import { Button } from "../Button/Button";
 
 export type TicketTech = {
   id: string;

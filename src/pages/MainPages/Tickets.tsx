@@ -5,12 +5,14 @@ import { api } from "../../services/api";
 import { useEffect, useState } from "react";
 import { AxiosError } from "axios";
 import { Loading } from "../../components/Loading/Loading";
+import { useNavigate } from "react-router";
 
 export function Tickets() {
   const { session } = useAuth();
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchTickets() {
@@ -47,7 +49,9 @@ export function Tickets() {
     fetchTickets();
   }, [session]);
 
-  const handleViewDetails = (ticketId: number) => {};
+  const handleViewDetails = (ticketId: number) => {
+    navigate(`/AdministratorTicketDetails/details/${ticketId}`);
+  };
 
   if (isLoading) {
     return <Loading />;
