@@ -5,11 +5,14 @@ import { useAuth } from "../../hooks/useAuth";
 import { api } from "../../services/api";
 import { AxiosError } from "axios";
 import { Loading } from "../../components/Loading/Loading";
+import { ClientModal } from "../../components/ClientModal/ClientModal";
 
 export function Clients() {
   const { session } = useAuth();
   const [client, setClient] = useState<Client[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [clientModalOpen, setClientModalOpen] = useState(false);
+  const [selectedClient, setSelectedClient] = useState<Client | null>(null);
 
   useEffect(() => {
     async function fetchedClients() {
@@ -37,7 +40,14 @@ export function Clients() {
     fetchedClients();
   }, [session]);
 
-  const handleEdit = async (userId: string) => {};
+  const handleEdit = async (clientId: string) => {
+    const clientEdit = client.find((c) => c.id === clientId);
+
+    if (!clientEdit) return;
+
+    setSelectedClient(clientEdit);
+    setClientModalOpen(true);
+  };
   const handleDelete = async (clientId: string) => {
     if (confirm("Tem certeza que deseja excluir esse cliente?")) {
       try {
@@ -66,6 +76,16 @@ export function Clients() {
         onEdit={handleEdit}
         onDelete={handleDelete}
       />
+      {clientModalOpen && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 backdrop-blur-sm">
+          <ClientModal
+            clientId={selectedClient?.id ?? ""}
+            emailInput={selectedClient?.email ?? ""}
+            nameInput={selectedClient?.name ?? ""}
+            onClose={() => setClientModalOpen(false)}
+          />
+        </div>
+      )}
     </div>
   );
 }
