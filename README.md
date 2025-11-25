@@ -1,73 +1,78 @@
-# React + TypeScript + Vite
+🧾 Sobre o projeto
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O Helpdesk Front é uma interface web desenvolvida em React + TypeScript para interação com a Helpdesk API.
+O projeto utiliza Tailwind CSS, Axios, validações com Zod, componentes personalizados e páginas como:
 
-Currently, two official plugins are available:
+Login
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Dashboard
 
-## React Compiler
+Listagem e criação de clientes
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Listagem e criação de chamados (Tickets)
 
-## Expanding the ESLint configuration
+Página NewTicket com <Select> customizado buscando serviços da API
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🚀 Tecnologias utilizadas
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+React
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+TypeScript
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Axios
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Zod
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+React Router DOM
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Tailwind CSS
+
+Vite
+
+Hooks personalizados (useCallback, useEffect, etc.)
+
+📂 Funcionalidades principais
+
+👤 Autenticação
+
+Login com chamada à API Auth
+
+Armazenamento seguro do token
+
+Rotas protegidas
+
+🧑‍💼 Clientes
+
+Listagem
+
+Criação
+
+Edição
+
+Exclusão
+
+Tratamento de erros com axios interceptors
+
+🎫 Tickets
+
+Listagem de tickets
+
+Tela NewTicket com:
+
+Select customizado
+
+Busca dinâmica dos serviços: (GET /services)
+
+Formulário validado com Zod
+
+Visualização individual do ticket
+
+🎨 UI / Componentes
+
+Tailwind CSS para estilização
+
+Componentes reutilizáveis
+
+Responsividade
+
+Select customizado integrado ao backend
