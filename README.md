@@ -32,6 +32,7 @@ Vite
 Hooks personalizados (useCallback, useEffect, etc.)
 
 📂 Funcionalidades principais
+
 👤 Autenticação
 
 Login com chamada à API Auth
