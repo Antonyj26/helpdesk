@@ -5,7 +5,6 @@ import { useState } from "react";
 import { z, ZodError } from "zod";
 import { api } from "../../services/api";
 import { AxiosError } from "axios";
-import { fi } from "zod/locales";
 
 type TechModalProps = {
   onClose: () => void;
