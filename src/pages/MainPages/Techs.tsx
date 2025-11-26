@@ -8,12 +8,15 @@ import { Loading } from "../../components/Loading/Loading";
 import { Button } from "../../components/Button/Button";
 import plusSvg from "../../assets/plus.svg";
 import { TechModal } from "../../components/TechModal/TechModal";
+import { UpdateTechModal } from "../../components/TechModal/UpdateTechModal";
 
 export function Techs() {
   const { session } = useAuth();
   const [tech, setTech] = useState<Tech[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedTech, setSelectedTech] = useState<Tech | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [updateModalOpen, setUpdateModalOpen] = useState(false);
 
   useEffect(() => {
     async function fetchedTechs() {
@@ -38,7 +41,33 @@ export function Techs() {
     fetchedTechs();
   }, [session]);
 
-  const handleEdit = (techId: string) => {};
+  const handleEdit = (techId: string) => {
+    const techEdit = tech.find((c) => c.id === techId);
+
+    if (!techEdit) return;
+
+    setSelectedTech(techEdit);
+    setUpdateModalOpen(true);
+  };
+
+  async function handleDelete(techId: string) {
+    const techDelete = tech.find((c) => c.id === techId);
+
+    if (!techDelete) return;
+
+    if (confirm("Tem certeza que quer excluir esse técnico?")) {
+      try {
+        await api.delete(`/admin/tech/delete/${techId}`);
+        setUpdateModalOpen(false);
+        window.location.reload();
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          console.log(error);
+          alert(error.response?.data.message ?? "Erro ao excluir técnico");
+        }
+      }
+    }
+  }
 
   if (isLoading) {
     return <Loading />;
@@ -65,6 +94,17 @@ export function Techs() {
       {modalOpen && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 backdrop-blur-sm">
           <TechModal onClose={() => setModalOpen(false)} />
+        </div>
+      )}
+      {updateModalOpen && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 backdrop-blur-sm">
+          <UpdateTechModal
+            idTech={selectedTech?.id ?? ""}
+            emailTech={selectedTech?.email ?? ""}
+            nameTech={selectedTech?.name ?? ""}
+            onClose={() => setUpdateModalOpen(false)}
+            onDelete={() => handleDelete(selectedTech?.id ?? "")}
+          />
         </div>
       )}
     </div>

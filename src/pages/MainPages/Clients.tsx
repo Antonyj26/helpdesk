@@ -55,7 +55,6 @@ export function Clients() {
         window.location.reload();
       } catch (error) {
         if (error instanceof AxiosError) {
-          console.log(error);
           return alert(
             error.response?.data.message ?? "Erro ao deletar cliente"
           );
