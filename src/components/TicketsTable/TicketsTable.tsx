@@ -1,5 +1,6 @@
 import { StatusTickets } from "../Status/StatusTickets";
 import detailsSvg from "../../assets/pen-line.svg";
+import { useAuth } from "../../hooks/useAuth";
 
 export type Ticket = {
   id: number;
@@ -18,6 +19,7 @@ type TicketsTableProps = {
 };
 
 export function TicketsTable({ tickets, onViewDetails }: TicketsTableProps) {
+  const { session } = useAuth();
   return (
     <div className="overflow-x-auto border border-gray-500 rounded-2xl">
       <table className="min-w-full divide-y divide-gray-500">
@@ -67,14 +69,16 @@ export function TicketsTable({ tickets, onViewDetails }: TicketsTableProps) {
               <td className="px-6 py-4">
                 <StatusTickets status={ticket.status} />
               </td>
-              <td>
-                <button
-                  className="bg-gray-500 w-7 h-7 rounded-1xl cursor-pointer flex items-center justify-center hover:bg-gray-600 transition ease-linear mr-2"
-                  onClick={() => onViewDetails(ticket.id)}
-                >
-                  <img src={detailsSvg} alt="Caneta de detalhes" />
-                </button>
-              </td>
+              {session?.role === "admin" && (
+                <td>
+                  <button
+                    className="bg-gray-500 w-7 h-7 rounded-1xl cursor-pointer flex items-center justify-center hover:bg-gray-600 transition ease-linear mr-2"
+                    onClick={() => onViewDetails(ticket.id)}
+                  >
+                    <img src={detailsSvg} alt="Caneta de detalhes" />
+                  </button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
