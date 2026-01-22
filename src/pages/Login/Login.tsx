@@ -5,6 +5,7 @@ import { z, ZodError } from "zod";
 import { AxiosError } from "axios";
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/useAuth";
+import { Loading } from "../../components/Loading/Loading";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "E-mail inválido" }),
@@ -71,6 +72,7 @@ export function Login() {
           Entrar
         </Button>
       </form>
+      {isLoading && <Loading />}
       <div className="border p-7 border-gray-500 rounded-3xl flex flex-col ">
         <h1 className="text-lg font-bold text-gray-200 mb-1">
           Ainda não tem uma conta?

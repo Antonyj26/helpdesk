@@ -5,6 +5,8 @@ import { z, ZodError } from "zod";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router";
 import { AxiosError } from "axios";
+import { is } from "zod/locales";
+import { Loading } from "../../components/Loading/Loading";
 
 const registerSchema = z.object({
   name: z.string().trim().min(2, { message: "Informe o nome" }),
@@ -91,6 +93,7 @@ export function Register() {
           Criar conta
         </Button>
       </form>
+      {isLoading && <Loading />}
       <div className="border p-7 border-gray-500 rounded-3xl flex flex-col ">
         <h1 className="text-lg font-bold text-gray-200 mb-1">
           Já tem uma conta?

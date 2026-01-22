@@ -1,10 +1,15 @@
 import logoLoadingSvg from "../../assets/Logo_IconDark.svg";
+import { ThreeDot } from "react-loading-indicators";
 
 export function Loading() {
   return (
     <div className="w-full h-full flex justify-center items-center">
-      <img className="mr-5" src={logoLoadingSvg} alt="Logo" />
-      <span className="text-blue-dark font-bold text-xl">Carregando...</span>
+      <ThreeDot
+        color="#2e3da3"
+        size="medium"
+        text="Carregando"
+        textColor="#2e3da3"
+      />
     </div>
   );
 }
