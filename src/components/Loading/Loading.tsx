@@ -1,4 +1,3 @@
-import logoLoadingSvg from "../../assets/Logo_IconDark.svg";
 import { ThreeDot } from "react-loading-indicators";
 
 export function Loading() {

@@ -5,7 +5,6 @@ import { z, ZodError } from "zod";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router";
 import { AxiosError } from "axios";
-import { is } from "zod/locales";
 import { Loading } from "../../components/Loading/Loading";
 
 const registerSchema = z.object({
