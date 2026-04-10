@@ -40,7 +40,7 @@ export function TechTable({ techs, onEdit }: TechTableProps) {
               <td className="px-6 py-2 text-sm font-bold">{tech.email}</td>
               <td>
                 <div className="flex flex-wrap gap-3">
-                  {tech.availableHours.map((hour, index) => (
+                  {(tech.availableHours || []).map((hour, index) => (
                     <span
                       className="border p-1.5 border-gray-500 rounded-2xl text-gray-400"
                       key={index}
