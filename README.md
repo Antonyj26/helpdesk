@@ -3,6 +3,8 @@
 O Helpdesk Front é uma interface web desenvolvida em React + TypeScript para interação com a Helpdesk API.
 O projeto utiliza Tailwind CSS, Axios, validações com Zod, componentes personalizados e páginas como:
 
+Link: https://helpdesk-theta-opal.vercel.app
+
 Login
 
 Dashboard
